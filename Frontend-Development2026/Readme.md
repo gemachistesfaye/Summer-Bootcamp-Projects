@@ -3,7 +3,7 @@
 
 A lightweight, vanilla JS frontend learning platform — hands-on demos, interactive tools, and curated learning paths to accelerate frontend skills. **Built with pure HTML/CSS/JS (No Frameworks).**
 
-**[🔗 Live Demo](https://your-actual-username.github.io/codecraft-frontend)**
+**[🔗 Live Demo](https://gemachistesfaye.github.io/Frontend-Showcase/Frontend-Development2026)**
 
 ---
 
