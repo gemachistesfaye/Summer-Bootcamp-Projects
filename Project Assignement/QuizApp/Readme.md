@@ -7,7 +7,7 @@ It displays multiple-choice questions, calculates the score and highlights corre
 
 ## 🚀 Live Demo
 
-## [Click here to try the live quiz](https://GemachisTesfaye.github.io/code-craft/Project%20Assignement/QuizApp)
+## [Click here to try the live quiz](https://temachistesfaye.github.io/code-craft/Project%20Assignement/QuizApp)
 
 ---
 
