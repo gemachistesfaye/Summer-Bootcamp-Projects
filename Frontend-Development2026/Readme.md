@@ -1,7 +1,7 @@
 
 # Frontend-Development2026
 
-A lightweight, vanilla JS frontend learning platform — hands-on demos, interactive tools, and curated learning paths to accelerate frontend skills. **Built with pure HTML/CSS/JS (No Frameworks).**
+A lightweight, vanilla JS frontend learning platform — hands-on demos, interactive tools and curated learning paths to accelerate frontend skills. **Built with pure HTML/CSS/JS.**
 
 # [🔗 Live Demo](https://gemachistesfaye.github.io/Frontend-Showcase/Frontend-Development2026)
 
@@ -11,12 +11,12 @@ A lightweight, vanilla JS frontend learning platform — hands-on demos, interac
 
 * **Modern Landing Page:** Impactful hero section with clear Call-to-Actions (CTA).
 * **Responsive UI:** Mobile-first design with a seamless desktop/mobile navigation toggle.
-* **Knowledge Hub:** Industry insights, tech radar, and structured learning roadmaps.
+* **Knowledge Hub:** Industry insights, tech radar and structured learning roadmaps.
 * **Interactive Toolset:**
     * **Salary Calculator:** Role-based estimates based on location and experience.
     * **Framework Quiz:** Interactive assessment with instant scoring and explanations.
     * **To-Do List:** Task manager utilizing `localStorage` for data persistence.
-* **Showcase & Community:** Project gallery, mentor profiles, and user testimonials.
+* **Showcase & Community:** Project gallery, mentor profiles and user testimonials.
 * **Communication:** Accessible contact form and social integration.
 
 ---
