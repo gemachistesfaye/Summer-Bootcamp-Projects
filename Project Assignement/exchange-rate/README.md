@@ -13,7 +13,7 @@ A simple, **live** exchange rate calculator that:
 
 ## 🌟Live Demo
 
-## [View Project Live Here](https://urjiiko1.github.io/Frontend-Showcase/Project%20Assignement/exchange-rate)
+## [View Project Live Here](https://gemachistesfaye.github.io/Frontend-Showcase/Project%20Assignement/exchange-rate)
 
 ---
 
