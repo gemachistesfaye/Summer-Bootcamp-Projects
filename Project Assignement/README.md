@@ -16,7 +16,7 @@ This repository contains a **collection of frontend projects** developed during 
 An interactive quiz application built to test user knowledge with instant feedback.
 
 - 📂 **Source Code:** [QuizApp Folder](./QuizApp)
-- 🌐 **Live Demo:** https://gemachistesfaye.github.io/Frontend-Showcase/QuizApp/
+- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/Project%20Assignement/QuizApp)
 
 **Technologies Used:**
 - HTML  
