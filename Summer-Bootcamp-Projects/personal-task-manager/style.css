@@ -1,0 +1,88 @@
+        :root {
+            --primary: #3b82f6;
+            --accent: #8b5cf6;
+            --glass-bg-dark: rgba(15, 23, 42, 0.85);
+            --glass-bg-light: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.5s ease;
+        }
+
+        [data-theme="dark"] {
+            background: radial-gradient(circle at top left, #1e1b4b, #020617);
+            color: #f1f5f9;
+        }
+
+        [data-theme="light"] {
+            background: radial-gradient(circle at top left, #eff6ff, #f8fafc);
+            color: #0f172a;
+        }
+
+        .glass {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] .glass {
+            background: var(--glass-bg-light);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .glass {
+            background: var(--glass-bg-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        .task-card {
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-chip.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 10px;
+        }
+
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.4);
+        }
+
+   
+        #mobileNav {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobileNav.closed {
+            transform: translateX(-100%);
+        }
+
+        .timer-active {
+            animation: pulse-blue 2s infinite;
+        }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
