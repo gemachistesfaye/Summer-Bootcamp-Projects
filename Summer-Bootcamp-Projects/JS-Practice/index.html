@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Logic Playground - Comprehensive Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .console-box {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 0.75rem;
+            min-height: 40px;
+            white-space: pre-wrap;
+            border-left: 4px solid #3b82f6;
+            font-size: 0.875rem;
+        }
+
+        .card {
+            background: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            color: #eb5757;
+            background: #f9f2f2;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .code-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .code-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .code-container {
+            background: #282c34;
+            width: 100%;
+            max-width: 850px;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid #3e4451;
+            display: flex;
+            flex-direction: column;
+            max-height: 85vh;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #3e4451;
+            background: #21252b;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            overflow-y: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #abb2bf;
+            white-space: pre;
+        }
+
+        /* Syntax Highlighting */
+        .code-keyword { color: #c678dd; font-weight: bold; }
+        .code-func { color: #61afef; }
+        .code-string { color: #98c379; }
+        .code-comment { color: #5c6370; font-style: italic; }
+        .code-num { color: #d19a66; }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            z-index: 200;
+            display: none;
+        }
+
+        .icon-btn { cursor: pointer; transition: all 0.2s; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen pb-20 font-sans">
+
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-12 px-4 shadow-xl mb-10">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-5xl font-extrabold mb-3">JavaScript Comprehensive Lab</h1>
+            <p class="text-blue-100 text-lg tracking-wide">Enhanced with Part 4 Function Tasks & Advanced Logic</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 space-y-10">
+
+        <!-- Part 1: Type Coercion -->
+        <section class="card p-8 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex justify-between items-center mb-6 border-b pb-2">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <span class="mr-2">🧩</span> Part 1: Type Coercion
+                </h2>
+                <button onclick="openCode('code-content-1')" class="icon-btn flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full border hover:text-blue-600 transition font-medium text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    View Logic
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>'5' + 7</code> → <b class="text-blue-600">"57"</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>Boolean(0)</code> → <b class="text-blue-600">false</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>'10' - '2'</code> → <b class="text-blue-600">8</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>'5' == 5</code> → <b class="text-blue-600">true</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>'5' === 5</code> → <b class="text-blue-600">false</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>Boolean('')</code> → <b class="text-blue-600">false</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>'5' + true</code> → <b class="text-blue-600">"5true"</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>'5' * 2</code> → <b class="text-blue-600">10</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>0 == false</code> → <b class="text-blue-600">true</b></div>
+                <div class="bg-white/80 p-2 rounded border text-xs"><code>Boolean(NaN)</code> → <b class="text-blue-600">false</b></div>
+            </div>
+
+            <div id="code-content-1" class="hidden"><span class="code-comment">/* Part 1: Type Coercion */</span>
+console.<span class="code-func">log</span>(<span class="code-string">'5'</span> + <span class="code-num">7</span>);        <span class="code-comment">// 57</span>
+console.<span class="code-func">log</span>(<span class="code-keyword">Boolean</span>(<span class="code-num">0</span>));      <span class="code-comment">// false</span>
+console.<span class="code-func">log</span>(<span class="code-string">'10'</span> - <span class="code-string">'2'</span>);      <span class="code-comment">// 8</span>
+console.<span class="code-func">log</span>(<span class="code-string">'5'</span> == <span class="code-num">5</span>);        <span class="code-comment">// true</span>
+console.<span class="code-func">log</span>(<span class="code-string">'5'</span> === <span class="code-num">5</span>);       <span class="code-comment">// false</span>
+console.<span class="code-func">log</span>(<span class="code-keyword">Boolean</span>(<span class="code-string">''</span>));     <span class="code-comment">// false</span>
+console.<span class="code-func">log</span>(<span class="code-string">'5'</span> + <span class="code-keyword">true</span>);      <span class="code-comment">// 5true</span>
+console.<span class="code-func">log</span>(<span class="code-string">'5'</span> * <span class="code-num">2</span>);         <span class="code-comment">// 10</span>
+console.<span class="code-func">log</span>(<span class="code-num">0</span> == <span class="code-keyword">false</span>);      <span class="code-comment">// true</span>
+console.<span class="code-func">log</span>(<span class="code-keyword">Boolean</span>(<span class="code-keyword">NaN</span>));    <span class="code-comment">// false</span></div>
+        </section>
+
+        <!-- Part 2: Conditional Checks -->
+        <section class="card p-8 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex justify-between items-center mb-6 border-b pb-2">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <span class="mr-2">⚖️</span> Part 2: Conditional Checks
+                </h2>
+                <button onclick="openCode('code-content-2')" class="icon-btn flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full border hover:text-blue-600 transition font-medium text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    View Functions
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-2">Number Status (number1)</label>
+                    <input type="number" id="numInput" value="1" class="w-full border p-2 rounded mb-2">
+                    <button onclick="uiNumberCheck()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Execute</button>
+                    <div id="numOutput" class="console-box italic">Result...</div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-2">Voting (vote)</label>
+                    <input type="number" id="voteInput" value="18" class="w-full border p-2 rounded mb-2">
+                    <button onclick="uiVoteCheck()" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">Execute</button>
+                    <div id="voteOutput" class="console-box italic">Result...</div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-2">Temperature (temp)</label>
+                    <input type="number" id="tempInput" value="0" class="w-full border p-2 rounded mb-2">
+                    <button onclick="uiTempCheck()" class="w-full bg-cyan-600 text-white py-2 rounded hover:bg-cyan-700 transition">Execute</button>
+                    <div id="tempOutput" class="console-box italic">Result...</div>
+                </div>
+            </div>
+
+            <div id="code-content-2" class="hidden"><span class="code-comment">/* Task 1: Positive, Negative, or Zero */</span>
+<span class="code-keyword">function</span> <span class="code-func">number1</span>(num) {
+  <span class="code-keyword">if</span> (num > <span class="code-num">0</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"The number u input is POSITIVE"</span>);
+  } <span class="code-keyword">else if</span> (num == <span class="code-num">0</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"The number u input is ZERO"</span>);
+  } <span class="code-keyword">else</span> {
+    console.<span class="code-func">log</span>(<span class="code-string">"The number u input is NEGATIVE"</span>);
+  }
+}
+
+<span class="code-comment">/* Task 2: Voting Eligibility */</span>
+<span class="code-keyword">function</span> <span class="code-func">vote</span>(age) {
+  <span class="code-keyword">if</span> (age >= <span class="code-num">18</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"u are eligible for vote🎉"</span>);
+  } <span class="code-keyword">else if</span> (age < <span class="code-num">18</span> && age >= <span class="code-num">0</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"u are not eligible for vote🚫"</span>);
+  } <span class="code-keyword">else</span> {
+    console.<span class="code-func">log</span>(<span class="code-string">"invalid input⚡"</span>);
+  }
+}</div>
+        </section>
+
+        <!-- Part 3: Loop Exercises -->
+        <section class="card p-8 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex justify-between items-center mb-6 border-b pb-2">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <span class="mr-2">🔄</span> Part 3: Loop Exercises
+                </h2>
+                <button onclick="openCode('code-content-3')" class="icon-btn flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full border hover:text-blue-600 transition font-medium text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    View Loops
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white/50 p-4 rounded-lg border">
+                    <h3 class="font-bold mb-3 text-purple-700">Factorial Loop</h3>
+                    <input type="number" id="factInput" value="5" class="w-full border p-2 rounded mb-2">
+                    <button onclick="uiFactorial()" class="w-full bg-purple-600 text-white py-2 rounded">Run Factorial</button>
+                    <div id="factOutput" class="console-box">...</div>
+                </div>
+                <div class="bg-white/50 p-4 rounded-lg border">
+                    <h3 class="font-bold mb-3 text-orange-700">Fibonacci & Prime Ranges</h3>
+                    <input type="number" id="rangeInput" value="10" class="w-full border p-2 rounded mb-2">
+                    <div class="flex gap-2">
+                        <button onclick="uiFibonacci()" class="w-1/2 bg-orange-500 text-white py-2 rounded">Fibonacci</button>
+                        <button onclick="uiPrimeRange()" class="w-1/2 bg-emerald-600 text-white py-2 rounded">Prime Range</button>
+                    </div>
+                    <div id="rangeOutput" class="console-box">...</div>
+                </div>
+            </div>
+
+            <div id="code-content-3" class="hidden"><span class="code-comment">/* Task 2: Fibonacci Sequence */</span>
+<span class="code-keyword">function</span> <span class="code-func">fibonacci</span>(a) {
+  <span class="code-keyword">if</span> (a <= <span class="code-num">0</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"enter number greater than 0 ❌"</span>);
+  } <span class="code-keyword">else if</span> (a == <span class="code-num">1</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"0"</span>);
+  } <span class="code-keyword">else</span> {
+    <span class="code-keyword">let</span> ab = [<span class="code-num">0, 1</span>];
+    <span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = <span class="code-num">2</span>; i < a; i++) {
+      <span class="code-keyword">let</span> abc = ab[i - <span class="code-num">1</span>] + ab[i - <span class="code-num">2</span>];
+      ab.<span class="code-func">push</span>(abc);
+    }
+    console.<span class="code-func">log</span>(ab.<span class="code-func">join</span>(<span class="code-string">","</span>));
+  }
+}</div>
+        </section>
+
+        <!-- Part 4: Advanced Function Tasks -->
+        <section class="card p-8 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex justify-between items-center mb-6 border-b pb-2">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <span class="mr-2">⚡</span> Part 4: Advanced Functions
+                </h2>
+                <button onclick="openCode('code-content-4')" class="icon-btn flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full border hover:text-blue-600 transition font-medium text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    View Arrow Functions
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-sm text-gray-600 mb-3 uppercase">Average Calculation</h3>
+                    <div class="flex gap-2 mb-2">
+                        <input type="number" id="avgA" placeholder="Num A" class="w-1/2 border p-2 rounded">
+                        <input type="number" id="avgB" placeholder="Num B" class="w-1/2 border p-2 rounded">
+                    </div>
+                    <button onclick="uiAverage()" class="w-full bg-slate-700 text-white py-2 rounded">Calculate Average</button>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-600 mb-3 uppercase">Single Prime Check</h3>
+                    <input type="number" id="singlePrimeInput" value="17" class="w-full border p-2 rounded mb-2">
+                    <button onclick="uiSinglePrime()" class="w-full bg-slate-700 text-white py-2 rounded">Is Prime?</button>
+                </div>
+            </div>
+            <div id="funcOutput" class="console-box mt-4">...</div>
+
+            <div id="code-content-4" class="hidden"><span class="code-comment">/* Task 2: Factorial (Arrow Function) */</span>
+<span class="code-keyword">const</span> <span class="code-func">factorial1</span> = (a) => {
+  <span class="code-keyword">if</span> (<span class="code-keyword">typeof</span> a !== <span class="code-string">"number"</span> || !Number.<span class="code-func">isInteger</span>(a)) {
+    console.<span class="code-func">log</span>(<span class="code-string">"enter valid number❌"</span>);
+    <span class="code-keyword">return</span>;
+  }
+  <span class="code-keyword">if</span> (a < <span class="code-num">0</span>) {
+    console.<span class="code-func">log</span>(<span class="code-string">"no factorial for negative❌"</span>);
+    <span class="code-keyword">return</span>;
+  }
+  <span class="code-keyword">let</span> result = <span class="code-num">1</span>;
+  <span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = <span class="code-num">2</span>; i <= a; i++) result *= i;
+  console.<span class="code-func">log</span>(<span class="code-string">`factorial of ${a} is ${result}`</span>);
+};</div>
+        </section>
+
+        <!-- Part 5: Array Operations -->
+        <section class="card p-8 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex justify-between items-center mb-6 border-b pb-2">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <span class="mr-2">📊</span> Part 5: Array Methods
+                </h2>
+                <button onclick="openCode('code-content-5')" class="icon-btn flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full border hover:text-blue-600 transition font-medium text-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    View All Methods
+                </button>
+            </div>
+
+            <div class="mb-4 p-4 bg-blue-50/50 rounded-lg flex justify-between items-center border">
+                <code id="displayArray" class="text-xl font-mono text-blue-700 font-bold">[5, 11, 14, 6, 9, 19, 4]</code>
+                <button onclick="resetArray()" class="text-xs bg-blue-600 text-white px-3 py-1 rounded">Reset Array</button>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 mb-4">
+                <button onclick="runOp('map')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">map (squared)</button>
+                <button onclick="runOp('filter')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">filter (odd)</button>
+                <button onclick="runOp('reduce')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">reduce (sum)</button>
+                <button onclick="runOp('find')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">find (>10)</button>
+                <button onclick="runOp('findIndex')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">findIndex (even)</button>
+                <button onclick="runOp('includes')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">includes(11)</button>
+                <button onclick="runOp('slice')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">slice(0,3)</button>
+                <button onclick="runOp('sort')" class="text-xs font-bold p-2 bg-white border rounded hover:bg-blue-50">sort()</button>
+                <button onclick="runOp('splice')" class="text-xs font-bold p-2 bg-white border border-yellow-300 rounded hover:bg-yellow-50">splice (last=21)</button>
+            </div>
+
+            <div id="arrayConsole" class="console-box h-48 overflow-y-auto">Action log...</div>
+
+            <div id="code-content-5" class="hidden"><span class="code-comment">// Advanced Array Patterns</span>
+<span class="code-keyword">let</span> numb = [<span class="code-num">5, 11, 14, 6, 9, 19, 4</span>];
+
+<span class="code-comment">// Map</span>
+<span class="code-keyword">let</span> squared = numb.<span class="code-func">map</span>(a => a * a);
+
+<span class="code-comment">// Filter</span>
+<span class="code-keyword">let</span> odd = numb.<span class="code-func">filter</span>(a => a % <span class="code-num">2</span> !== <span class="code-num">0</span>);
+
+<span class="code-comment">// Splice Pattern</span>
+<span class="code-keyword">let</span> spli = numb.<span class="code-func">splice</span>(numb.length - <span class="code-num">1</span>, <span class="code-num">1</span>, <span class="code-num">21</span>);</div>
+        </section>
+
+    </main>
+
+    <!-- Overlay Component -->
+    <div id="globalOverlay" class="code-overlay">
+        <div class="code-container">
+            <div class="code-header">
+                <span class="text-blue-400 font-bold text-sm tracking-widest uppercase">Snippet Inspector</span>
+                <div class="flex gap-3">
+                    <button onclick="copyCurrentCode()" class="flex items-center text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded-lg transition border border-slate-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        </svg>
+                        Copy
+                    </button>
+                    <button onclick="closeCode()" class="text-red-400 hover:bg-red-500 hover:text-white p-1.5 rounded-lg transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="overlayCodeDisplay" class="code-content"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        /** Overlay Helpers **/
+        const overlay = document.getElementById('globalOverlay');
+        const display = document.getElementById('overlayCodeDisplay');
+
+        function openCode(contentId) {
+            display.innerHTML = document.getElementById(contentId).innerHTML;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCode() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyCurrentCode() {
+            const text = display.innerText;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        }
+
+        overlay.addEventListener('click', (e) => { if(e.target === overlay) closeCode(); });
+
+        const logToBox = (boxId, msg) => {
+            const el = document.getElementById(boxId);
+            el.innerText = msg;
+            el.classList.remove('italic');
+        };
+
+        /* ================== LOGIC IMPLEMENTATION ================== */
+
+        // Part 2: Conditionals
+        function number1(num) {
+            if (num > 0) return "The number u input is POSITIVE";
+            else if (num == 0) return "The number u input is ZERO";
+            else return "The number u input is NEGATIVE";
+        }
+
+        function vote(age) {
+            if (age >= 18) return "u are eligible for vote🎉";
+            else if (age < 18 && age >= 0) return "u are not eligible for vote🚫";
+            else return "invalid input⚡";
+        }
+
+        function temp(tp) {
+            if (tp > 0) return "above freezing point 🌡️";
+            else if (tp == 0) return "equal to freezing point ❄️";
+            else return "below freezing point 🧊";
+        }
+
+        // Part 3: Loops
+        function factorial(a) {
+            if (a < 0) return "factorial is not for negative number👎";
+            if (a == 0) return "factorial of 0 is 1 ✅";
+            let result = 1;
+            for (let i = 1; i <= a; i++) result *= i;
+            return `factorial of ${a} is ${result} ✅`;
+        }
+
+        function fibonacci(a) {
+            if (a <= 0) return "enter number greater than 0 ❌";
+            if (a == 1) return "0";
+            if (a == 2) return "0,1";
+            let ab = [0, 1];
+            for (let i = 2; i < a; i++) ab.push(ab[i - 1] + ab[i - 2]);
+            return ab.join(", ");
+        }
+
+        function prime(a) {
+            if (a < 2) return "no prime number for this❌";
+            let ab = [];
+            for (let i = 2; i <= a; i++) {
+                let isP = true;
+                for (let j = 2; j <= Math.sqrt(i); j++) if (i % j == 0) { isP = false; break; }
+                if (isP) ab.push(i);
+            }
+            return `prime numbers till ${a} is ${ab.join(", ")}`;
+        }
+
+        // Part 4: Function Tasks
+        function average(a, b) {
+            if (isNaN(a) || isNaN(b)) return "enter valid number❌";
+            return `average of ${a} and ${b} = ${(a + b) / 2}`;
+        }
+
+        const singlePrime = function(a) {
+            if (isNaN(a) || !Number.isInteger(a)) return "enter valid number❌";
+            if (a <= 1) return "enter number greater than 1⚡";
+            for (let i = 2; i <= Math.sqrt(a); i++) {
+                if (a % i == 0) return `${a} not prime number👎`;
+            }
+            return `${a} is prime number✅`;
+        }
+
+        /** UI Handlers **/
+        function uiNumberCheck() { logToBox('numOutput', number1(Number(document.getElementById('numInput').value))); }
+        function uiVoteCheck() { logToBox('voteOutput', vote(Number(document.getElementById('voteInput').value))); }
+        function uiTempCheck() { logToBox('tempOutput', temp(Number(document.getElementById('tempInput').value))); }
+        function uiFactorial() { logToBox('factOutput', factorial(Number(document.getElementById('factInput').value))); }
+        function uiFibonacci() { logToBox('rangeOutput', fibonacci(Number(document.getElementById('rangeInput').value))); }
+        function uiPrimeRange() { logToBox('rangeOutput', prime(Number(document.getElementById('rangeInput').value))); }
+        function uiAverage() { logToBox('funcOutput', average(Number(document.getElementById('avgA').value), Number(document.getElementById('avgB').value))); }
+        function uiSinglePrime() { logToBox('funcOutput', singlePrime(Number(document.getElementById('singlePrimeInput').value))); }
+
+        // Array Ops
+        let numb = [5, 11, 14, 6, 9, 19, 4];
+        function updateArrayDisplay() { document.getElementById('displayArray').innerText = JSON.stringify(numb); }
+        function resetArray() { numb = [5, 11, 14, 6, 9, 19, 4]; updateArrayDisplay(); logToBox('arrayConsole', '> Array Reset'); }
+        
+        function runOp(op) {
+            let res = "";
+            if(op==='map') res = "Squared: " + JSON.stringify(numb.map(a => a * a));
+            if(op==='filter') res = "Odds: " + JSON.stringify(numb.filter(a => a % 2 !== 0));
+            if(op==='reduce') res = "Sum: " + numb.reduce((a, b) => a + b, 0);
+            if(op==='find') res = "First > 10: " + (numb.find(a => a > 10) || "None");
+            if(op==='findIndex') res = "Index of first even: " + numb.findIndex(a => a % 2 == 0);
+            if(op==='includes') res = "Contains 11? " + numb.includes(11);
+            if(op==='slice') res = "First three: " + JSON.stringify(numb.slice(0, 3));
+            if(op==='sort') { numb.sort((a,b)=>a-b); res = "Sorted (in-place)"; updateArrayDisplay(); }
+            if(op==='splice') { 
+                let removed = numb.splice(numb.length - 1, 1, 21);
+                res = "Removed " + removed + ", Added 21"; 
+                updateArrayDisplay(); 
+            }
+            
+            const consoleEl = document.getElementById('arrayConsole');
+            consoleEl.innerHTML += `<div><span class="text-blue-400 font-bold">> ${op}():</span> ${res}</div>`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+    </script>
+</body>
+</html>

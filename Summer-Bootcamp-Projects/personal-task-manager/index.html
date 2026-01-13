@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith OS | Ultimate Workspace</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --accent: #8b5cf6;
+            --glass-bg-dark: rgba(15, 23, 42, 0.85);
+            --glass-bg-light: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.5s ease;
+        }
+
+        [data-theme="dark"] {
+            background: radial-gradient(circle at top left, #1e1b4b, #020617);
+            color: #f1f5f9;
+        }
+
+        [data-theme="light"] {
+            background: radial-gradient(circle at top left, #eff6ff, #f8fafc);
+            color: #0f172a;
+        }
+
+        .glass {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] .glass {
+            background: var(--glass-bg-light);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .glass {
+            background: var(--glass-bg-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        .task-card {
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-chip.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 10px;
+        }
+
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* Mobile Menu Animation */
+        #mobileNav {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobileNav.closed {
+            transform: translateX(-100%);
+        }
+
+        .timer-active {
+            animation: pulse-blue 2s infinite;
+        }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+    </style>
+</head>
+<body data-theme="dark" class="min-h-screen">
+
+<!-- PROFILE EDIT MODAL -->
+<div id="profileModal" class="fixed inset-0 z-[300] modal-overlay flex items-center justify-center p-4 transition-all duration-300 hidden opacity-0">
+    <div class="glass p-8 rounded-[2.5rem] max-w-lg w-full space-y-6">
+        <div class="flex items-center gap-4">
+            <div class="p-3 bg-blue-600/10 rounded-xl text-blue-500">
+                <i data-lucide="user-cog" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold">Profile Settings</h2>
+                <p class="text-[10px] opacity-50 uppercase tracking-widest font-bold">Workspace Identity</p>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1">
+                <label class="text-[10px] uppercase tracking-widest opacity-50 font-bold ml-1">Full Name</label>
+                <input id="editUserNameInput" type="text" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-sm focus:ring-2 ring-blue-500 outline-none transition-all">
+            </div>
+            <div class="space-y-1">
+                <label class="text-[10px] uppercase tracking-widest opacity-50 font-bold ml-1">Age</label>
+                <input id="editUserAgeInput" type="number" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-sm focus:ring-2 ring-blue-500 outline-none transition-all">
+            </div>
+            <div class="space-y-1 md:col-span-2">
+                <label class="text-[10px] uppercase tracking-widest opacity-50 font-bold ml-1">Job Title</label>
+                <input id="editUserJobInput" type="text" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-sm focus:ring-2 ring-blue-500 outline-none transition-all">
+            </div>
+            <div class="space-y-1 md:col-span-2">
+                <label class="text-[10px] uppercase tracking-widest opacity-50 font-bold ml-1">Professional Bio</label>
+                <textarea id="editUserBioInput" rows="2" class="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-sm focus:ring-2 ring-blue-500 outline-none transition-all resize-none"></textarea>
+            </div>
+        </div>
+
+        <div class="flex gap-3 pt-2">
+            <button onclick="closeProfileModal()" class="flex-1 py-3 rounded-xl glass font-bold text-xs uppercase tracking-widest">Cancel</button>
+            <button onclick="saveProfile()" class="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-widest transition-colors">Apply Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- CONFIRMATION MODAL -->
+<div id="confirmModal" class="fixed inset-0 z-[300] modal-overlay flex items-center justify-center p-4 transition-all duration-300 hidden opacity-0">
+    <div class="glass p-8 rounded-[2rem] text-center max-w-sm w-full space-y-6">
+        <div class="flex justify-center">
+            <div class="p-3 bg-red-500/10 rounded-xl text-red-500">
+                <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-xl font-bold mb-2">Terminate Session?</h2>
+            <p class="opacity-60 text-sm">This will clear all local workspace data and reset the system.</p>
+        </div>
+        <div class="flex gap-3">
+            <button onclick="closeConfirm()" class="flex-1 py-3 rounded-xl glass font-bold text-sm">CANCEL</button>
+            <button onclick="confirmLogout()" class="flex-1 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-colors">TERMINATE</button>
+        </div>
+    </div>
+</div>
+
+<!-- ONBOARDING OVERLAY -->
+<div id="onboarding" class="fixed inset-0 z-[400] modal-overlay flex items-center justify-center p-4 transition-all duration-500 hidden">
+    <div class="glass p-10 rounded-[2.5rem] text-center max-w-md w-full space-y-8">
+        <div class="flex justify-center">
+            <div class="p-4 bg-blue-600 rounded-2xl shadow-lg shadow-blue-500/30 text-white">
+                <i data-lucide="layout" class="w-10 h-10"></i>
+            </div>
+        </div>
+        <div>
+            <h1 class="text-3xl font-black mb-2 tracking-tight">ZENITH OS</h1>
+            <p class="opacity-60 text-sm">Create your professional high-performance workspace.</p>
+        </div>
+        <div class="space-y-4">
+            <input id="userNameInput" type="text" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 text-center text-lg font-medium focus:ring-2 ring-blue-500 outline-none transition-all" placeholder="Enter Full Name">
+            <button id="startBtn" disabled class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl text-white font-bold tracking-wide transition-all disabled:opacity-30">BOOT SYSTEM</button>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE TOP BAR (Only Mobile) -->
+<div id="mobileTopBar" class="lg:hidden flex items-center justify-between p-4 glass sticky top-0 z-[100] border-b border-white/5 hidden">
+    <div class="flex items-center gap-2">
+        <div class="p-1.5 bg-blue-600 rounded-lg text-white">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+        </div>
+        <span class="font-black text-sm tracking-tight">ZENITH</span>
+    </div>
+    <button onclick="toggleMobileNav()" class="p-2 glass rounded-xl">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+    </button>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div id="mobileNav" class="fixed inset-0 z-[200] lg:hidden closed">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleMobileNav()"></div>
+    <aside class="relative w-72 h-full glass flex flex-col p-6 border-r border-white/10">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+                <div class="p-1.5 bg-blue-600 rounded-lg text-white">
+                    <i data-lucide="zap" class="w-4 h-4"></i>
+                </div>
+                <span class="font-black text-lg tracking-tight">ZENITH</span>
+            </div>
+            <button onclick="toggleMobileNav()" class="p-2 opacity-50"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        
+        <nav class="flex-1 space-y-2">
+            <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-500 font-bold" onclick="toggleMobileNav()">
+                <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
+            </button>
+            <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl opacity-50" onclick="toggleMobileNav()">
+                <i data-lucide="bar-chart-3" class="w-5 h-5"></i> Analytics
+            </button>
+            <button onclick="openProfileModal(); toggleMobileNav()" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl opacity-50">
+                <i data-lucide="settings" class="w-5 h-5"></i> Preferences
+            </button>
+        </nav>
+
+        <div class="mt-auto pt-6 border-t border-white/5">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold" id="mUserAvatar">Z</div>
+                <div class="overflow-hidden">
+                    <p id="mUserName" class="font-bold text-sm truncate">User</p>
+                    <p id="mUserJob" class="text-[10px] opacity-50 uppercase tracking-widest truncate">Admin</p>
+                </div>
+            </div>
+            <button onclick="logout()" class="w-full py-3 rounded-xl text-red-400 bg-red-400/5 text-[10px] font-black uppercase tracking-widest">
+                Terminate Session
+            </button>
+        </div>
+    </aside>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div id="app" class="flex flex-col lg:flex-row h-screen overflow-hidden hidden">
+    
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="hidden lg:flex w-72 glass h-full border-r border-white/5 flex-col p-6 z-50">
+        <div class="flex items-center gap-3 mb-10 px-2">
+            <div class="p-2 bg-blue-600 rounded-lg text-white">
+                <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <h2 class="text-xl font-black tracking-tight">ZENITH<span class="text-blue-500">.</span></h2>
+        </div>
+
+        <nav class="flex-1 space-y-2">
+            <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-500 font-bold transition-all">
+                <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
+            </button>
+            <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl opacity-50 hover:opacity-100 hover:bg-white/5 transition-all">
+                <i data-lucide="bar-chart-3" class="w-5 h-5"></i> Analytics
+            </button>
+            <button onclick="openProfileModal()" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl opacity-50 hover:opacity-100 hover:bg-white/5 transition-all">
+                <i data-lucide="settings" class="w-5 h-5"></i> Preferences
+            </button>
+        </nav>
+
+        <div id="sidebarBioCard" class="mt-4 p-4 rounded-2xl bg-white/5 border border-white/5 hidden">
+            <p class="text-[9px] uppercase tracking-widest font-black opacity-30 mb-2">BIO</p>
+            <p id="sidebarBioText" class="text-xs opacity-70 leading-relaxed italic">No bio set.</p>
+        </div>
+
+        <div class="mt-auto pt-6 border-t border-white/5">
+            <div class="flex items-center gap-3 px-2 mb-4">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20 cursor-pointer hover:scale-110 transition-transform" id="userAvatar" onclick="openProfileModal()">Z</div>
+                <div class="cursor-pointer overflow-hidden" onclick="openProfileModal()">
+                    <p id="pcUserName" class="font-bold text-sm truncate max-w-[120px]">User</p>
+                    <p id="pcUserJob" class="text-[10px] opacity-50 uppercase tracking-widest truncate">System Admin</p>
+                </div>
+            </div>
+            <button onclick="logout()" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-red-400 hover:bg-red-400/10 text-xs font-bold transition-all uppercase tracking-widest">
+                <i data-lucide="power" class="w-4 h-4"></i> Terminate
+            </button>
+        </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-1 overflow-y-auto custom-scrollbar relative p-4 lg:p-10 space-y-8 pb-20">
+        
+        <!-- HEADER -->
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <h1 id="greeting" class="text-2xl lg:text-3xl font-extrabold tracking-tight mb-1">Welcome back, User</h1>
+                <p id="dateDisplay" class="opacity-50 text-xs lg:text-sm font-medium">Monday, Jan 24, 2024</p>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <div class="glass px-4 py-2 rounded-2xl flex items-center gap-3">
+                    <div id="statusDot" class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-[10px] font-bold uppercase tracking-widest opacity-70">Live Node</span>
+                </div>
+                <button id="themeToggle" class="p-3 glass rounded-2xl hover:scale-110 transition-transform">
+                    <i id="themeIcon" data-lucide="moon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            
+            <!-- LEFT COLUMN: CREATOR & TOOLS -->
+            <section class="xl:col-span-4 space-y-6">
+                <!-- Task Creator -->
+                <div class="glass p-6 lg:p-8 rounded-[2rem] lg:rounded-[2.5rem] space-y-6">
+                    <h3 class="text-sm font-black uppercase tracking-widest opacity-50 flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> New Directive
+                    </h3>
+                    <form id="taskForm" class="space-y-4">
+                        <textarea id="taskInput" rows="2" class="w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-white/5 resize-none focus:ring-2 ring-blue-500 outline-none transition-all placeholder:opacity-30 text-sm" placeholder="Describe the goal..."></textarea>
+                        
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" data-cat="Personal" class="category-chip py-2 rounded-xl glass text-[9px] font-black uppercase tracking-tighter active">Personal</button>
+                            <button type="button" data-cat="Work" class="category-chip py-2 rounded-xl glass text-[9px] font-black uppercase tracking-tighter">Work</button>
+                            <button type="button" data-cat="Urgent" class="category-chip py-2 rounded-xl glass text-[9px] font-black uppercase tracking-tighter">Urgent</button>
+                        </div>
+
+                        <button class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl text-white font-bold text-xs uppercase tracking-widest transition-all">Add to Feed</button>
+                    </form>
+                </div>
+
+                <!-- Pomodoro Timer -->
+                <div id="pomodoroCard" class="glass p-6 lg:p-8 rounded-[2rem] lg:rounded-[2.5rem] space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-black uppercase tracking-widest opacity-50">Deep Work</h3>
+                        <div id="timerMode" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500">FOCUS</div>
+                    </div>
+                    <div class="text-center py-2">
+                        <span id="timerDisplay" class="text-4xl lg:text-5xl font-black tracking-tighter">25:00</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="toggleTimer()" id="timerToggleBtn" class="flex-1 py-3 bg-white/5 hover:bg-white/10 rounded-xl flex items-center justify-center gap-2 transition-all">
+                            <i id="timerIcon" data-lucide="play" class="w-4 h-4"></i>
+                            <span class="text-[9px] font-black uppercase">Start</span>
+                        </button>
+                        <button onclick="resetTimer()" class="p-3 bg-white/5 hover:bg-white/10 rounded-xl">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Analytics Card -->
+                <div class="glass p-6 lg:p-8 rounded-[2rem] lg:rounded-[2.5rem] space-y-6">
+                    <div class="flex justify-between items-end">
+                        <h3 class="text-sm font-black uppercase tracking-widest opacity-50">Pulse</h3>
+                        <p id="completionRate" class="text-2xl lg:text-3xl font-black text-blue-500">0%</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-[9px] font-black opacity-50 uppercase">
+                                <span>Processor Load</span>
+                                <span id="loadVal">0%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div id="loadBar" class="analytics-bar h-full bg-blue-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: FEED -->
+            <section class="xl:col-span-8 space-y-6">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 px-2 lg:px-4">
+                    <div class="flex items-center gap-4 flex-1">
+                        <h3 class="text-lg font-bold">Directives</h3>
+                        <div class="relative flex-1 max-w-xs">
+                            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 opacity-30"></i>
+                            <input id="searchInput" type="text" placeholder="Filter..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs outline-none transition-all">
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="categoryFilter" class="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-[9px] font-black uppercase tracking-widest focus:outline-none focus:ring-1 ring-blue-500 transition-all">
+                            <option value="All">All Categories</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="Urgent">Urgent</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="taskList" class="grid gap-3"></div>
+
+                <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 opacity-20">
+                    <i data-lucide="cloud-off" class="w-16 h-16 mb-4"></i>
+                    <p class="font-bold uppercase tracking-widest text-xs text-center">Awaiting data input</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<script>
+    const system = {
+        user: localStorage.getItem('zen_user') || '',
+        userAge: localStorage.getItem('zen_age') || '',
+        userJob: localStorage.getItem('zen_job') || 'System Admin',
+        userBio: localStorage.getItem('zen_bio') || '',
+        tasks: JSON.parse(localStorage.getItem('zen_tasks')) || [],
+        theme: localStorage.getItem('zen_theme') || 'dark',
+        draftCat: 'Personal',
+        searchQuery: '',
+        filterCat: 'All',
+        timer: {
+            seconds: 25 * 60,
+            isActive: false,
+            interval: null,
+            mode: 'FOCUS'
+        }
+    };
+
+    const toggleMobileNav = () => {
+        const nav = document.getElementById('mobileNav');
+        nav.classList.toggle('closed');
+    };
+
+    const sync = () => {
+        localStorage.setItem('zen_user', system.user);
+        localStorage.setItem('zen_age', system.userAge);
+        localStorage.setItem('zen_job', system.userJob);
+        localStorage.setItem('zen_bio', system.userBio);
+        localStorage.setItem('zen_tasks', JSON.stringify(system.tasks));
+        localStorage.setItem('zen_theme', system.theme);
+        lucide.createIcons();
+    };
+
+    const updateAnalytics = () => {
+        const total = system.tasks.length;
+        const done = system.tasks.filter(t => t.done).length;
+        const rate = total === 0 ? 0 : Math.round((done / total) * 100);
+
+        document.getElementById('completionRate').textContent = `${rate}%`;
+        document.getElementById('loadVal').textContent = `${rate}%`;
+        document.getElementById('loadBar').style.width = `${rate}%`;
+        
+        const emptyState = document.getElementById('emptyState');
+        if (total === 0) emptyState.classList.remove('hidden');
+        else emptyState.classList.add('hidden');
+    };
+
+    const toggleTimer = () => {
+        const card = document.getElementById('pomodoroCard');
+        const btnText = document.querySelector('#timerToggleBtn span');
+        const btnIcon = document.getElementById('timerIcon');
+
+        if (system.timer.isActive) {
+            clearInterval(system.timer.interval);
+            system.timer.isActive = false;
+            btnText.textContent = 'Resume';
+            btnIcon.setAttribute('data-lucide', 'play');
+            card.classList.remove('timer-active');
+        } else {
+            system.timer.isActive = true;
+            btnText.textContent = 'Pause';
+            btnIcon.setAttribute('data-lucide', 'pause');
+            card.classList.add('timer-active');
+            system.timer.interval = setInterval(() => {
+                system.timer.seconds--;
+                if (system.timer.seconds <= 0) {
+                    clearInterval(system.timer.interval);
+                    system.timer.isActive = false;
+                    system.timer.mode = system.timer.mode === 'FOCUS' ? 'BREAK' : 'FOCUS';
+                    system.timer.seconds = system.timer.mode === 'FOCUS' ? 25 * 60 : 5 * 60;
+                    document.getElementById('timerMode').textContent = system.timer.mode;
+                }
+                updateTimerDisplay();
+            }, 1000);
+        }
+        lucide.createIcons();
+    };
+
+    const resetTimer = () => {
+        clearInterval(system.timer.interval);
+        system.timer.isActive = false;
+        system.timer.mode = 'FOCUS';
+        system.timer.seconds = 25 * 60;
+        document.querySelector('#timerToggleBtn span').textContent = 'Start';
+        document.getElementById('timerIcon').setAttribute('data-lucide', 'play');
+        document.getElementById('pomodoroCard').classList.remove('timer-active');
+        document.getElementById('timerMode').textContent = 'FOCUS';
+        updateTimerDisplay();
+        lucide.createIcons();
+    };
+
+    const updateTimerDisplay = () => {
+        const mins = Math.floor(system.timer.seconds / 60);
+        const secs = system.timer.seconds % 60;
+        document.getElementById('timerDisplay').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    const render = () => {
+        document.body.dataset.theme = system.theme;
+        
+        const onboarding = document.getElementById('onboarding');
+        const app = document.getElementById('app');
+        const mobileTopBar = document.getElementById('mobileTopBar');
+        const themeIcon = document.getElementById('themeIcon');
+        const taskList = document.getElementById('taskList');
+
+        if(!system.user){
+            onboarding.classList.remove('hidden');
+            app.classList.add('hidden');
+            mobileTopBar.classList.add('hidden');
+        } else {
+            onboarding.classList.add('hidden');
+            app.classList.remove('hidden');
+            mobileTopBar.classList.remove('hidden');
+            
+            // Sync user data to all areas
+            document.querySelectorAll('[id*="UserName"]').forEach(el => el.textContent = system.user);
+            document.querySelectorAll('[id*="UserJob"]').forEach(el => el.textContent = system.userJob);
+            document.querySelectorAll('[id*="UserAvatar"]').forEach(el => el.textContent = system.user.charAt(0).toUpperCase());
+            
+            document.getElementById('greeting').textContent = `Active: ${system.user.split(' ')[0]}`;
+            
+            const bioCard = document.getElementById('sidebarBioCard');
+            if(system.userBio) {
+                bioCard.classList.remove('hidden');
+                document.getElementById('sidebarBioText').textContent = system.userBio;
+            } else {
+                bioCard.classList.add('hidden');
+            }
+        }
+
+        themeIcon.setAttribute('data-lucide', system.theme === 'dark' ? 'sun' : 'moon');
+        const now = new Date();
+        document.getElementById('dateDisplay').textContent = now.toLocaleDateString('en-US', { 
+            weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' 
+        });
+
+        const filtered = system.tasks.filter(t => {
+            const matchesSearch = t.text.toLowerCase().includes(system.searchQuery.toLowerCase());
+            const matchesCat = system.filterCat === 'All' || t.category === system.filterCat;
+            return matchesSearch && matchesCat;
+        });
+
+        taskList.innerHTML = filtered.map(t => {
+            const catColors = {
+                'Personal': 'text-emerald-500 bg-emerald-500/10',
+                'Work': 'text-blue-500 bg-blue-500/10',
+                'Urgent': 'text-rose-500 bg-rose-500/10'
+            };
+            return `
+                <div class="task-card glass p-4 rounded-2xl flex items-center justify-between group hover:border-blue-500/30">
+                    <div class="flex items-center gap-4 overflow-hidden">
+                        <button onclick="toggleTask(${t.id})" 
+                                class="flex-shrink-0 w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all ${t.done ? 'bg-blue-600 border-blue-600' : ''}">
+                            ${t.done ? '<i data-lucide="check" class="w-4 h-4 text-white"></i>' : ''}
+                        </button>
+                        <div class="overflow-hidden">
+                            <span class="text-[8px] px-2 py-0.5 rounded-full font-black uppercase tracking-widest ${catColors[t.category] || 'bg-white/10 text-white'} mb-1 inline-block">
+                                ${t.category}
+                            </span>
+                            <p class="font-bold text-sm truncate ${t.done ? 'line-through opacity-30' : ''}">${t.text}</p>
+                        </div>
+                    </div>
+                    <button onclick="deleteTask(${t.id})" class="p-2 opacity-50 hover:opacity-100 hover:text-red-500 transition-all">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            `;
+        }).reverse().join('');
+
+        updateAnalytics();
+        sync();
+    };
+
+    window.toggleTask = id => {
+        const t = system.tasks.find(x => x.id === id);
+        if (t) t.done = !t.done;
+        render();
+    };
+
+    window.deleteTask = id => {
+        system.tasks = system.tasks.filter(x => x.id !== id);
+        render();
+    };
+
+    window.openProfileModal = () => {
+        const modal = document.getElementById('profileModal');
+        document.getElementById('editUserNameInput').value = system.user;
+        document.getElementById('editUserAgeInput').value = system.userAge;
+        document.getElementById('editUserJobInput').value = system.userJob;
+        document.getElementById('editUserBioInput').value = system.userBio;
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    };
+
+    window.closeProfileModal = () => {
+        const modal = document.getElementById('profileModal');
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+    };
+
+    window.saveProfile = () => {
+        const newName = document.getElementById('editUserNameInput').value.trim();
+        if (newName.length >= 2) {
+            system.user = newName;
+            system.userAge = document.getElementById('editUserAgeInput').value.trim();
+            system.userJob = document.getElementById('editUserJobInput').value.trim() || 'System Admin';
+            system.userBio = document.getElementById('editUserBioInput').value.trim();
+            render();
+            closeProfileModal();
+        }
+    };
+
+    window.logout = () => {
+        const modal = document.getElementById('confirmModal');
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    };
+
+    window.closeConfirm = () => {
+        const modal = document.getElementById('confirmModal');
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+    };
+
+    window.confirmLogout = () => {
+        localStorage.clear();
+        location.reload();
+    };
+
+    document.getElementById('startBtn').onclick = () => {
+        system.user = document.getElementById('userNameInput').value.trim();
+        render();
+    };
+
+    document.getElementById('userNameInput').oninput = e => {
+        document.getElementById('startBtn').disabled = e.target.value.length < 2;
+    };
+
+    document.getElementById('searchInput').oninput = e => {
+        system.searchQuery = e.target.value;
+        render();
+    };
+
+    document.getElementById('categoryFilter').onchange = e => {
+        system.filterCat = e.target.value;
+        render();
+    };
+
+    document.getElementById('taskForm').onsubmit = e => {
+        e.preventDefault();
+        const input = document.getElementById('taskInput');
+        if (!input.value.trim()) return;
+        system.tasks.push({ id: Date.now(), text: input.value.trim(), category: system.draftCat, done: false });
+        input.value = '';
+        render();
+    };
+
+    document.querySelectorAll('.category-chip').forEach(btn => {
+        btn.onclick = () => {
+            document.querySelectorAll('.category-chip').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            system.draftCat = btn.dataset.cat;
+        };
+    });
+
+    document.getElementById('themeToggle').onclick = () => {
+        system.theme = system.theme === 'dark' ? 'light' : 'dark';
+        render();
+    };
+
+    window.onload = () => {
+        render();
+        lucide.createIcons();
+    };
+</script>
+</body>
+</html>
