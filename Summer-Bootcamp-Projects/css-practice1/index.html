@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Exercise1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#team" class="nav-link">Team</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+
+    <section id="home" class="responsive-hero-section">
+        <header class="hero">
+            <div class="content">
+                <h1>Crafting Digital Experiences</h1>
+                <p>We combine design and technology to build solutions that scale. From data analysis to front-end magic, our team has you covered.</p>
+                <a href="#contact" class="cta-button">Start a Project</a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1920" alt="Hero Background" class="hero-bg" />
+        </header>
+    </section>
+
+ 
+    <section id="features" class="features">
+        <h2>What We Do</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa fa-code"></i>
+                <h3>Web Development</h3>
+                <p>Building fast, responsive, and accessible websites using the latest technologies.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa fa-paint-brush"></i>
+                <h3>UI/UX Design</h3>
+                <p>Designing intuitive interfaces that users love to interact with every single day.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa fa-line-chart"></i>
+                <h3>Data Analytics</h3>
+                <p>Turning complex data sets into actionable insights for your business growth.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa fa-mobile"></i>
+                <h3>Mobile Apps</h3>
+                <p>Cross-platform mobile solutions that bring your brand to your customers' pockets.</p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section id="team" class="team-section">
+        <h2>Our Creative Team</h2>
+        <div class="team-container">
+            <div class="Profile-cards">
+                <img src="https://raw.githubusercontent.com/urjiiko1/code-craft/main/CSS01/pexels-simon-robben-55958-614810.jpg" alt="Gemachis">
+                <h3>Gemachis</h3>
+                <p class="Profile-p">Front-end Developer</p>
+                <ul>
+                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-telegram"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="Profile-cards">
+                <img src="https://raw.githubusercontent.com/urjiiko1/code-craft/main/CSS01/daagim.jfif" alt="Daagim">
+                <h3>Daagim</h3>
+                <p class="Profile-p">Graphic Designer</p>
+                <ul>
+                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-telegram"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="Profile-cards">
+                <img src="https://raw.githubusercontent.com/urjiiko1/code-craft/main/CSS01/download.jfif" alt="Simalee">
+                <h3>Simalee</h3>
+                <p class="Profile-p">Data Analyst</p>
+                <ul>
+                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-telegram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="pricing" class="pricing-section">
+        <h2>Simple Pricing</h2>
+        <div class="pricing-table-container">
+            <div class="plan" data-tooltip="Perfect for side projects">
+                <h3>Basic</h3>
+                <div class="price">77<span>/mo</span></div>
+                <ul>
+                    <li>5 Projects</li> 
+                    <li>10 GB Storage</li>
+                    <li>Basic Analytics</li>
+                </ul>
+                <button class="cta-button">Get Basic</button> 
+            </div>
+
+            <div class="plan middle-plan" data-tooltip="Best value for startups">
+                <span class="badge">Popular</span>
+                <h3>Professional</h3>
+                <div class="price">119<span>/mo</span></div>
+                <ul>
+                    <li>Unlimited Projects</li>
+                    <li>100 GB Storage</li>
+                    <li>Priority Support</li>
+                    <li>Custom Branding</li>
+                </ul>
+                <button class="cta-button">Get Pro</button>
+            </div>
+
+            <div class="plan" data-tooltip="For heavy enterprise use">
+                <h3>Enterprise</h3>
+                <div class="price">199<span>/mo</span></div>
+                <ul>
+                    <li>Unlimited Storage</li>
+                    <li>Dedicated Manager</li>
+                    <li>24/7 Support</li>
+                    <li>API Access</li>
+                </ul>
+                <button class="cta-button">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="contact-section">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <form action="#">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Tell us about your project..."></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026. All rights reserved.</p>
+        <p>Built with html and Modern CSS.</p>
+    </footer>
+
+</body>
+</html>
