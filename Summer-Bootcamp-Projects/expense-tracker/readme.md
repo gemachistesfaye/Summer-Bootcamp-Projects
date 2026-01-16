@@ -10,7 +10,7 @@ A simple Expense Tracker app that lets you:
 
 ## 🚀 View Project Live Here
 
-## [Click to try the live app](https://gemachistesfaye.github.io/Frontend-Showcase/Project%20Assignement/expense-tracker)
+## [Click to try the live app](https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/expense-tracker)
 
 ---
 
