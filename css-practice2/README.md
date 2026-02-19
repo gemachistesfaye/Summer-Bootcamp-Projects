@@ -6,7 +6,7 @@ Welcome to this Web login Pages project! 🎉 This collection features beautiful
 ---
 
 
-**▶️ Live Demo:** **[View Project Live Here](https://urjiiko1.github.io/Summer-Bootcamp-Projects/css-practice2/)** 🌐
+**▶️ Live Demo:** **[View Project Live Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects/css-practice2/)** 🌐
 
 ---
 
@@ -40,7 +40,7 @@ This project blends modern UI design with captivating CSS animations:
 
 ## 🎨 Key CSS Snippets ✏️
 
-While the full styling resides in [`style.css`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/style.css), here are some core parts that drive the visual effects:
+While the full styling resides in [`style.css`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/style.css), here are some core parts that drive the visual effects:
 
 ### 1. 🌟 Glassmorphism Forms
 
@@ -194,7 +194,7 @@ This project is open-source and free to use, modify and distribute.
 
 Connect with me and see more of my work here:
 
-[`GitHub Profile`](https://github.com/urjiiko1) 🔗
+[`GitHub Profile`](https://github.com/gemachistesfaye) 🔗
 
 [`LinkedIn Profile`](https://www.linkedin.com/in/gemachis-tesfaye-137196318) 💼
 
@@ -204,8 +204,8 @@ Portfolio **Soon😊** 🚀
 ## 💌 Feedback or Suggestions?
 
 Have ideas to improve this project or want to collaborate? Reach out via: 
-- [Telegram](https://t.me/urjiiko1) 
-- [GitHub Issues](https://github.com/urjiiko1/code-craft/issues). 
+- [Telegram](https://t.me/GemachisTesfaye) 
+- [GitHub Issues](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/issues). 
 
 I'd love to hear from you!
 
