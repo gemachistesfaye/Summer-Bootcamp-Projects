@@ -20,7 +20,7 @@ A simple, **live** exchange rate calculator that:
 
 
 ## 📸 Screenshot
-![Exchange Rate Screenshot](image1.png)
+![Exchange Rate Screenshot](Screenshot.png)
 
 ---
 
