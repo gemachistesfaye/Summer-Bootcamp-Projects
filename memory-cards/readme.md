@@ -5,7 +5,7 @@
 ---
 
 ## 🔗 Live Demo
-**[View Live Demo Here](https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects//memory-cards/)** 
+**[View Live Demo Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects//memory-cards/)** 
 
 
 
