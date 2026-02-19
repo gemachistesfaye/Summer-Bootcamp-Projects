@@ -101,7 +101,7 @@ Please report bugs or suggest new features via **GitHub Issues**.
   <a href="https://www.linkedin.com/in/gemachis-tesfaye-137196318">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn" />
   </a>
-  <a href="https://t.me/urjiiko1">
+  <a href="https://t.me/GemachisTesfaye">
     <img src="https://img.shields.io/badge/Telegram-0088CC?logo=telegram&logoColor=white&style=for-the-badge" alt="Telegram" />
   </a>
 </p>
