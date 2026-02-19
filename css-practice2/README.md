@@ -22,7 +22,7 @@ Welcome to this Web login Pages project! 🎉 This collection features beautiful
 ```
 
 > **Note on Image Assets:**  
-> This project relies on several image files like [`bg.jpg`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/bg.jpg), [`girl.png`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/girl.png), [`leaf_01.png`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/leaf_01.png) etc. that should be located in the same directory as  HTML and CSS files for the design and animations to display correctly. 📁
+> This project relies on several image files like [`bg.jpg`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/bg.jpg), [`girl.png`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/girl.png), [`leaf_01.png`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/leaf_01.png) etc. that should be located in the same directory as  HTML and CSS files for the design and animations to display correctly. 📁
 
 ---
 
@@ -125,7 +125,7 @@ Here are some previews of what the pages look like in action:
 
 | Sign In Page | Sign Up Page | Forget Page |
 |------------|--------------|----------------|
-| ![Sign-in](https://github.com/urjiiko1/code-craft/blob/main/CSS02/preview-sign-in.png) | ![Sign-up](https://github.com/urjiiko1/code-craft/blob/main/CSS02/preview-sign-up.png) | ![Forget](https://github.com/urjiiko1/code-craft/blob/main/CSS02/preview-forget.png) |
+| ![Sign-in](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/preview-sign-in.png) | ![Sign-up](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/preview-sign-up.png) | ![Forget](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/preview-forget.png) |
 
 ----
 
@@ -169,9 +169,9 @@ Here are some ideas for potential future improvements to this project:
 
 Follow these steps to set up and view the project locally:
 
-1. **Save Files:** Place all HTML files [`index.html`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/index.html), [`Register.html`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/Register.html) [`forget.html`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/forget.html) and [`style.css`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/style.css) into a single folder.
-2. **Add Image Assets:** Ensure all images [`bg.jpg`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/bg.jpg), [`girl.png`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/girl.png), [`trees.png`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/trees.png), leaf images, etc.) are in the same folder.
-3. **Open in Browser:** Double-click [`index.html`](https://github.com/urjiiko1/code-craft/blob/main/CSS02/index.html) or open it via your preferred browser.
+1. **Save Files:** Place all HTML files [`index.html`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/index.html), [`Register.html`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/Register.html) [`forget.html`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/forget.html) and [`style.css`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/style.css) into a single folder.
+2. **Add Image Assets:** Ensure all images [`bg.jpg`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/bg.jpg), [`girl.png`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/girl.png), [`trees.png`](https://github.com/gemachistesfaye/code-craft/blob/main/css-practice2/trees.png), leaf images, etc.) are in the same folder.
+3. **Open in Browser:** Double-click [`index.html`](https://github.com/gemachistesfaye/Summer-Bootcamp-Projects/blob/main/css-practice2/index.html) or open it via your preferred browser.
 4. **Navigate & Explore:** Visit the Sign Up and Forget Password pages through the links to experience the full animated flow.
 
 ---
