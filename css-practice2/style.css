@@ -265,7 +265,7 @@
             100% { transform: none; } 
         }
 
-        /* Responsive Fixes */
+       
         @media (max-width: 768px) {
             .girl { 
                 height: 40%;
