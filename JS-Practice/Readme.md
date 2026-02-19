@@ -76,7 +76,8 @@ If you have questions, feedback or want to collaborate on a logic project, feel 
 | **📧 Email** | [gemachistesfaye36@gmail.com](mailto:gemachistesfaye36@gmail.com) |
 | **🐙 GitHub** | [@gemachistesfaye](https://github.com/gemachistesfaye) |
 | **📱 Phone** | [+251 976 601 074](tel:+251976601074) |
-| **💬 Telegram** | [@urjiiko](https://t.me/urjiiko1) |
+| **💬 Telegram** | [Gemachis \| Data & Dev](https://t.me/GemachisTesfaye) |
+
 
 ---
 
