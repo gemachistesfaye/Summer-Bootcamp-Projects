@@ -1,4 +1,4 @@
-      * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -10,19 +10,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow-x: hidden; 
             margin: 0;
-            background: #111; /* Fallback background */
         }
 
         section {
-            position: relative;
+            position: relative; 
             width: 100%;
             height: 100svh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow: hidden; 
         }
 
         .bg {
@@ -42,29 +41,26 @@
             left: 0;
             width: 100%;
             height: auto;
+            min-height: 200px;
+            object-fit: cover;
             pointer-events: none;
             z-index: 3;
-            animation: moveTrees 25s linear infinite alternate;
-        }
-
-        @keyframes moveTrees {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50px); }
+            animation: moveTrees 25s linear infinite alternate; 
         }
 
         .girl {
             position: absolute;
-            bottom: 25%;
-            height: 60%;
+            bottom: 20%;
+            height: 50%;
             object-fit: contain;
             pointer-events: none;
             opacity: 0.85;
-            z-index: 2;
-            animation: moveBikeLeft 15s linear infinite;
+            z-index: 2; 
+            animation: moveBikeLeft 15s linear infinite; 
         }
 
         @keyframes moveBikeLeft {
-            0% { transform: translateX(100vw); }
+            0%   { transform: translateX(100vw); }
             100% { transform: translateX(-100vw); }
         }
 
@@ -172,7 +168,7 @@
             border: none;
             color: #90281F;
             outline: none;
-            text-transform: none; /* Changed from capitalize for email accuracy */
+            text-transform: none; 
             background: rgba(255, 255, 255, 0.4);
             transition: background 0.3s ease;
             margin-bottom: 15px;
@@ -228,7 +224,7 @@
             text-decoration: underline;
         }
 
-        .toast3 {
+        .toast1, .toast2, .toast3 {
             position: fixed;
             bottom: 30px;
             left: 50%;
@@ -247,6 +243,8 @@
             word-wrap: break-word;
         }
 
+        #popupTrigger:checked ~ .toast1,
+        #popupTrigger:checked ~ .toast2,
         #popupTrigger:checked ~ .toast3 {
             opacity: 1;
             visibility: visible;
@@ -254,24 +252,53 @@
         }
 
         @keyframes fadeout {
-            0% { opacity: 1; bottom: 40px; }
-            80% { opacity: 1; }
+            0%   { opacity: 1; bottom: 40px; }
+            80%  { opacity: 1; }
             100% { opacity: 0; bottom: 30px; }
+        }
+
+        #popupTrigger:checked {
+            animation: uncheck 6s forwards;
+        }
+
+        @keyframes uncheck {
+            100% { transform: none; } 
         }
 
         /* Responsive Fixes */
         @media (max-width: 768px) {
-            .girl { display: none; }
-            .trees { animation: none; }
+            .girl { 
+                height: 40%;
+                bottom: 15%; 
+            }
+            .trees { 
+                height: 30vh;
+                object-fit: cover;
+                animation: moveTrees 15s linear infinite alternate; 
+            }
             .VS { padding: 25px 18px; }
+            .VS h2 { font-size: 2.2rem; }
             .VS h3 { font-size: 1.6rem; }
         }
 
         @media (max-width: 480px) {
-            body, section { height: auto; min-height: 100svh; }
-            .VS { width: 95%; max-width: 360px; padding: 22px 16px; }
-            .inputBox input, #btn { padding: 12px; font-size: 15px; }
-            .group { flex-direction: column; gap: 10px; }
-            .group a { text-align: center; }
-            .leaves .set div { width: 40px; height: 40px; }
+            body, section { height: 100svh; overflow: hidden; }
+            .VS { 
+                width: 85%; 
+                max-width: 320px; 
+                padding: 20px 15px;
+                gap: 10px;
+            }
+            .inputBox input, #btn { padding: 12px; font-size: 14px; }
+            .VS h3 { font-size: 1.4rem; margin-bottom: 10px; }
+            .group { margin-top: 5px; }
+            .leaves .set div { width: 35px; height: 35px; }
+            .girl { height: 45%; bottom: 25%; }
+            .trees { height: 25vh; }
+        }
+
+        @media (max-width: 360px) {
+            .VS h2 { font-size: 1.8rem; }
+            .VS h3 { font-size: 1.2rem; }
+            .VS { width: 90%; }
         }
