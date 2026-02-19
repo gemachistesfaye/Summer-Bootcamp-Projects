@@ -1,87 +1,151 @@
-const balance = document.getElementById('balance');
-const incomes = document.getElementById('money-plus');
-const expens = document.getElementById('money-minus');
-const list = document.getElementById('list');
-const form = document.getElementById('form');
-const text = document.getElementById('text');
-const amount = document.getElementById('amount');
+        const balance = document.getElementById('balance');
+        const money_plus = document.getElementById('money-plus');
+        const money_minus = document.getElementById('money-minus');
+        const list = document.getElementById('list');
+        const form = document.getElementById('form');
+        const text = document.getElementById('text');
+        const amount = document.getElementById('amount');
+        const category = document.getElementById('category');
+        const searchInput = document.getElementById('search');
+        let myChart;
 
+        const categoryIcons = {
+            'Food': 'fa-utensils',
+            'Shopping': 'fa-shopping-bag',
+            'Housing': 'fa-home',
+            'Transport': 'fa-car',
+            'Salary': 'fa-money-bill-wave',
+            'General': 'fa-tags'
+        };
 
- const dummyData = [
-   {id:1 , text:'tea', amount :30},
-  {id:2 , text:'water', amount :90},
-  {id:3 , text:'burgur', amount :100},
-  {id:4 , text:'coffe', amount :120} ];
+        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
+        function showToast(msg, type = 'error') {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.backgroundColor = type === 'error' ? '#ef4444' : '#10b981';
+            toast.style.display = 'block';
+            toast.style.animation = 'slideUp 0.3s ease forwards';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
 
-const localStorageTransactions = JSON.parse(localStorage.getItem('transactions')
+        function addTransaction(e) {
+            e.preventDefault();
+            if (text.value.trim() === '' || amount.value.trim() === '') {
+                showToast('Please enter description and amount');
+                return;
+            }
 
-);
+            const transaction = {
+                id: Date.now(),
+                text: text.value,
+                amount: +amount.value,
+                category: category.value,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            };
 
-let transactions =localStorage.getItem('transactions') !== null ? localStorageTransactions : [];
+            transactions.push(transaction);
+            updateUI();
+            
+            text.value = '';
+            amount.value = '';
+            showToast('Transaction added successfully!', 'success');
+        }
 
-function generateId(){
-  // Youre code 
-return Math.floor(Math.random() * 10000000);
-  
-}
+        function removeTransaction(id) {
+            transactions = transactions.filter(t => t.id !== id);
+            updateUI();
+        }
 
+        function clearAll() {
+            if(confirm('Reset all transaction data?')) {
+                transactions = [];
+                updateUI();
+            }
+        }
 
-function addTransaction(e){
-  // your code 
-e.preventDefault();
+        function filterTransactions() {
+            const term = searchInput.value.toLowerCase();
+            const filtered = transactions.filter(t => t.text.toLowerCase().includes(term));
+            renderList(filtered);
+        }
 
-  if(!text.value.trim() && !amount.value.trim() ) { return alert("text & amount place is empty"); }
-  if(!text.value.trim()) {return alert("text place is empty"); }
-  if(!amount.value.trim()) {return alert("amount place is empty"); }
+        function renderList(data) {
+            list.innerHTML = '';
+            if (data.length === 0) {
+                list.innerHTML = '<li style="text-align:center; color:#94a3b8; padding:40px; font-size:0.9rem;">No transactions found</li>';
+                return;
+            }
 
-  const transaction={ id: generateId(), text: text.value, amount: +amount.value};
-  transactions.push(transaction); addTransactionDOM(transaction); updatevalues(); updateLocalStorage();
-   text.value="";  
-   amount.value=""
-}
+            data.slice().reverse().forEach(t => {
+                const sign = t.amount < 0 ? '-' : '+';
+                const icon = categoryIcons[t.category] || 'fa-tag';
 
-function addTransactionDOM(transaction){  
-  // your code
+                const li = document.createElement('li');
+                li.className = 'list-item';
+                li.innerHTML = `
+                    <div class="item-info">
+                        <div class="item-icon"><i class="fas ${icon}"></i></div>
+                        <div class="item-details">
+                            <b>${t.text}</b>
+                            <span>${t.category} • ${t.date}</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="item-amount" style="color: ${t.amount < 0 ? 'var(--expense-color)' : 'var(--income-color)'}">
+                            ${sign}$${Math.abs(t.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}
+                        </div>
+                        <button class="delete-btn" onclick="removeTransaction(${t.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+        }
 
-  const abc=transaction.amount<0;
-  const ab=document.createElement('li');
-  ab.classList.add(abc?'minus' :  'plus');
-  ab.innerHTML=`${transaction.text} <span>${Math.abs?'-': '+'}${Math.abs(transaction.amount)} </span>   <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>  `;
- list.appendChild(ab); }
+        function updateUI() {
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            renderList(transactions);
+            
+            const amounts = transactions.map(t => t.amount);
+            const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+            const income = amounts.filter(item => item > 0).reduce((acc, item) => (acc += item), 0).toFixed(2);
+            const expense = (amounts.filter(item => item < 0).reduce((acc, item) => (acc += item), 0) * -1).toFixed(2);
 
-function updatevalues(){
-  // your code
+            balance.innerText = `$${Number(total).toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            money_plus.innerText = `+$${Number(income).toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            money_minus.innerText = `-$${Number(expense).toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('item-count').innerText = transactions.length;
+            
+            updateChart(income, expense);
+        }
 
-  const amounts=transactions.map(t=>t.amount);
-  const total=amounts.reduce((x,y) =>x+y,0);
-  const income=amounts.filter(y=>y>0).reduce((x,y)=> x+y,0);
-  const expense=amounts.filter(y=>y<0).reduce((x,y)=>x+y,0);
+        function updateChart(inc, exp) {
+            const ctx = document.getElementById('expenseChart').getContext('2d');
+            if (myChart) myChart.destroy();
 
-  balance.innerText=`$${total.toFixed(4)}`;
-  incomes.innerText=`$${income.toFixed(4)}`;
-  expens.innerText=`$${Math.abs(expense).toFixed(4)}`;
-}
+            const dataValues = (inc == 0 && exp == 0) ? [1, 0] : [inc, exp];
+            const bgColors = (inc == 0 && exp == 0) ? ['#e2e8f0', '#e2e8f0'] : ['#10b981', '#ef4444'];
 
-function updateLocalStorage(){
-  // your code
-  localStorage.setItem('transactions', JSON.stringify(transactions));
-}
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: dataValues,
+                        backgroundColor: bgColors,
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    cutout: '75%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: (inc != 0 || exp != 0) }
+                    }
+                }
+            });
+        }
 
-function removeTransaction(id){
-//  your code
-  transactions = transactions.filter(transaction => transaction.id !== id);
-  updateLocalStorage();
-  init();
-}
-
-function init(){
-  // your code 
-  list.innerHTML = '';
-  transactions.forEach(addTransactionDOM);
-  updatevalues();
-}
-
-// add event Listener
-
-form.addEventListener('submit', addTransaction);
+        form.addEventListener('submit', addTransaction);
+        window.onload = updateUI;
