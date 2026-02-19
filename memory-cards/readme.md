@@ -7,7 +7,17 @@
 ## 🔗 Live Demo
 **[View Live Demo Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects//memory-cards/)** 
 
+---
 
+## 📸 Screenshot Table
+
+| Add Card | Question View | Answer View |
+|----------|---------------|-------------|
+| ![Add Card](add-card.png) | ![Question](question-view.png) | ![Answer](answer-view.png) |
+
+*Quick visual overview: Add a card, view the question and flip to see the answer.*
+
+---
 
 ## 🚀 Features
 
@@ -29,7 +39,7 @@
 | :--- | :--- |
 | **HTML5** | Semantic structure and layout |
 | **CSS3** | Modern styling, transitions, and CSS Variables |
-| **JavaScript (ES6+)** | DOM manipulation, logic, and local storage |
+| **JavaScript (ES6+)** | DOM manipulation, logic and local storage |
 | **SVG** | Scalable, lightweight icons for a clean UI |
 
 ---
@@ -38,28 +48,32 @@
 
 ### Local Setup
 1. **Clone the repository:**
-   
    ```bash
-   git clone [https://github.com/your-username/memory-cards.git](https://github.com/your-username/memory-cards.git)
+   git clone https://github.com/gemachistesfaye/Summer-Bootcamp-Projects.git
    ```
 2. **Navigate to the folder:**
    ```bash
-   cd memory-cards
+   cd Summer-Bootcamp-Projects/memory-cards
    ```
+3. **Launch the app:** Open `index.html` in your browser.  
+   *Pro Tip:* For full functionality (import/export JSON), use Live Server in VS Code.
 
-3. **Launch the app: Open index.html in your browser.**
-   Pro Tip: For full functionality (import/export JSON), use Live Server in VS Code.
 ---
+
 ### How It Works
-- **Adding Cards:** Click Add Card, input your question, answer, and optional category, then save.
-- **Flipping Cards:** Click a card or press Spacebar to reveal the answer.
-- **Navigating:** Use Prev/Next buttons or keyboard Left/Right Arrows.
-- **Shuffling:** Randomize your deck with the Shuffle button.
-- **Backup & Restore:** Export your deck as JSON for backup or import existing decks.
+
+* **Adding Cards:** Click Add Card, input your question, answer, and optional category, then save.
+* **Flipping Cards:** Click a card or press Spacebar to reveal the answer.
+* **Navigating:** Use Prev/Next buttons or keyboard Left/Right Arrows.
+* **Shuffling:** Randomize your deck with the Shuffle button.
+* **Backup & Restore:** Export your deck as JSON for backup or import existing decks.
+
+---
 
 ### 📁 Project Structure
 
-```memory-cards/
+```text
+memory-cards/
 │
 ├── index.html      # Core structure & UI
 ├── style.css       # Theming and layout (Custom Variables)
@@ -67,24 +81,21 @@
 └── README.md       # Project documentation
 ```
 
-
 ---
 
 ⚡️ **Future Roadmap**
-- Spaced Repetition (SRS): Smarter review intervals for each card.
-- Multimedia Support: Add images or audio clips to cards.
-- Mobile Optimization: Refine touch experience for mobile users.
-- Cloud Sync: Optional Firebase integration for cross-device syncing.
-  
+
+* Spaced Repetition (SRS): Smarter review intervals for each card.
+* Multimedia Support: Add images or audio clips to cards.
+* Mobile Optimization: Refine touch experience for mobile users.
+* Cloud Sync: Optional Firebase integration for cross-device syncing.
+
 ---
 
 ## 📬 Contact Information
 
-- **Email:** [gemachistesfaye36@gmail.com](mailto:gemachistesfaye36@gmail.com)
-- **GitHub:** [GitHub Profile](https://github.com/urjiiko1)
-- **Phone:** [+251 976 601 074](tel:+251976601074)
+* ✉️ **Email:** [gemachistesfaye36@gmail.com](mailto:gemachistesfaye36@gmail.com)  
+* 📱 **Telegram:** [Gemachis | Data & Dev](https://t.me/GemachisTesfaye)
+* 💼 **LinkedIn:** [Gemachis](https://www.linkedin.com/in/gemachis-tesfaye-137196318/)
+
 Feel free to reach out!
-
-
-
-
