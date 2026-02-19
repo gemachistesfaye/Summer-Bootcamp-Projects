@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Glassmorphism Signup Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <!-- Animated Background Elements -->
+        <div class="leaves">
+            <div class="set">
+                <div><img src="leaf_01.png" alt="leaf"></div>
+                <div><img src="leaf_02.png" alt="leaf"></div>
+                <div><img src="leaf_03.png" alt="leaf"></div>
+                <div><img src="leaf_04.png" alt="leaf"></div>
+                <div><img src="leaf_01.png" alt="leaf"></div>
+                <div><img src="leaf_02.png" alt="leaf"></div>
+                <div><img src="leaf_03.png" alt="leaf"></div>
+                <div><img src="leaf_04.png" alt="leaf"></div>
+            </div>
+        </div> 
+        <img src="bg.jpg" class="bg" alt="background">
+        <img src="girl.png" class="girl" alt="character"> 
+        <img src="trees.png" class="trees" alt="trees">
+
+        <!-- Main Signup Container -->
+        <div class="VS">
+            <form id="registerForm">
+                <h2>Sign Up</h2>
+                <div class="inputBox">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="inputBox">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="pass1" name="password" placeholder="Password" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="pass2" name="password2" placeholder="Confirm Password" required>
+                </div>
+                <div class="inputBox">
+                    <!-- Changed from label to button for validation -->
+                    <button type="submit" id="btn">Register</button>
+                </div>
+
+                <div class="group">
+                    <a href="index.html">Sign In</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Popup trigger checkbox -->
+        <input type="checkbox" id="popupTrigger" hidden>
+
+        <!-- Success message -->
+        <div class="toast2">You registered successfully!</div>
+    </section>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const pass1 = document.getElementById('pass1').value;
+            const pass2 = document.getElementById('pass2').value;
+
+            // Simple password match check
+            if (pass1 !== pass2) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Show success toast
+            document.getElementById('popupTrigger').checked = true;
+
+            // Optional: Redirect to login after 2 seconds
+            setTimeout(() => {
+                // window.location.href = "index.html";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

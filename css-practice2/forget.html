@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Glassmorphism Forget Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <!-- Animated Background Elements -->
+        <div class="leaves">
+            <div class="set">
+                <div><img src="leaf_01.png" alt="leaf"></div>
+                <div><img src="leaf_02.png" alt="leaf"></div>
+                <div><img src="leaf_03.png" alt="leaf"></div>
+                <div><img src="leaf_04.png" alt="leaf"></div>
+                <div><img src="leaf_01.png" alt="leaf"></div>
+                <div><img src="leaf_02.png" alt="leaf"></div>
+                <div><img src="leaf_03.png" alt="leaf"></div>
+                <div><img src="leaf_04.png" alt="leaf"></div>
+            </div>
+        </div> 
+        <img src="bg.jpg" class="bg" alt="background">
+        <img src="girl.png" class="girl" alt="character"> 
+        <img src="trees.png" class="trees" alt="trees">
+
+        <!-- Forget Password Container -->
+        <div class="VS">
+            <form id="forgetForm">
+                <h3>Forget Password</h3>
+                <div class="inputBox">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                
+                <div class="inputBox">
+                    <!-- Changed from label to button for validation -->
+                    <button type="submit" id="btn">Submit</button>
+                </div>
+
+                <div class="group">
+                    <a href="index.html">To Home</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Popup trigger checkbox -->
+        <input type="checkbox" id="popupTrigger" hidden>
+
+        <!-- Success message -->
+        <div class="toast3">You will receive password in this Email!</div>
+    </section>
+
+    <script>
+        document.getElementById('forgetForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page refresh
+            
+            // Show success toast
+            document.getElementById('popupTrigger').checked = true;
+
+            // Optional: Hide toast after 4 seconds
+            setTimeout(() => {
+                document.getElementById('popupTrigger').checked = false;
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
