@@ -6,7 +6,7 @@ Welcome to this Web login Pages project! 🎉 This collection features beautiful
 ---
 
 
-**▶️ Live Demo:** **[View Project Live Here](https://urjiiko1.github.io/code-craft/CSS02/)** 🌐
+**▶️ Live Demo:** **[View Project Live Here](https://urjiiko1.github.io/Summer-Bootcamp-Projects/css-practice2/)** 🌐
 
 ---
 
