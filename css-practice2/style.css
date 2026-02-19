@@ -118,34 +118,37 @@
             100% { top: 110%; transform: translateX(50px) rotate(225deg); opacity: 0; }
         }
 
-        .VS {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            background-color: rgba(255, 255, 255, 0.208);
-            backdrop-filter: blur(10px);
-            width: 90%;
-            max-width: 400px;
-            height: auto;
-            max-height: 90vh;
-            padding: 30px 20px;
-            border-radius: 15px;
-            border: .5px solid rgba(255, 255, 255, 0.56);
-            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.097);
-            z-index: 10;
-        }
+.VS {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.208);
+    backdrop-filter: blur(10px);
+
+    width: clamp(320px, 40vw, 560px);
+    max-width: 560px;
+
+    height: 350px;
+    max-height: 90vh;
+    padding: 30px 20px;
+    border-radius: 15px;
+    border: .5px solid rgba(255, 255, 255, 0.56);
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.097);
+    z-index: 10;
+}
+
 
         .VS h2 {
             width: 100%;
             text-align: center;
             color: #90281F;
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 20px;
         }
 
@@ -153,7 +156,7 @@
             width: 100%;
             text-align: center;
             color: #90281F;
-            font-size: 2rem;
+            font-size: 3rem;
             margin-bottom: 20px;
         }
 
@@ -172,7 +175,7 @@
             background: rgba(255, 255, 255, 0.4);
             transition: background 0.3s ease;
             margin-bottom: 15px;
-            font-size: 16px;
+            font-size: 19px;
         }
 
         .inputBox input:focus {
