@@ -2,137 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz-App -  Daily Quiz To Test Your JavaScript Knowledge</title>
-
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    <link rel="stylesheet" href="./style.css">
+    <title>ISHub Frontend Bootcamp Quiz App </title>
+    <!-- Modern Fonts and Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+   <link rel="stylesheet" href="../quiz-app/style.css">
 </head>
 <body>
 
-    <main>
-        <section class="quiz">
-            <div class="heading">
-                <p class="title">Is Frontend Bootcamp Quiz App</p>
-                <p class="subtitle">Daily Quiz To Test Your JavaScript Knowledge!</p>
+    <div class="app-container">
+        <header>
+            <span class="badge">Technical Bootcamp v2.0</span>
+            <h1>Is Frontend Bootcamp Quiz App</h1>
+            <p class="subtitle">Elevate your JavaScript engineering skills with our dynamic performance assessment.</p>
+        </header>
+
+        <!-- Stats / Progress Section -->
+        <div class="quiz-stats">
+            <div class="stat-item" title="Time Remaining">
+                <i class="bi bi-stopwatch"></i>
+                <span id="timerDisplay">05:00</span>
             </div>
-
-            <div class="result hide">
-                <p></p>
-                <p class="reload">
-                    <button onclick="document.location.reload(true)">Try Again?</button>
-                </p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
             </div>
+            <div class="stat-item" title="Questions Answered">
+                <i class="bi bi-check2-circle"></i>
+                <span id="progressCount">0/5</span>
+            </div>
+        </div>
 
-            <form class="quiz-form">
-                <div class="question ">
-                    <p>1. Inside which HTML element do we put the JavaScript?</p>
-                    <div class="option">
-                        <input type="radio" name="q1" id="" value="A" checked>
-                        <label for="">js</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q1" id="" value="B">
-                        <label for="">javascript</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q1" id="" value="C">
-                        <label for="">scripting</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q1" id="" value="D">
-                        <label for="">script</label>
-                    </div>
-                </div>
+        <!-- Dynamic Result Card -->
+        <div class="result-card" id="resultCard">
+            <h2 id="resultGreeting">Assessment Complete!</h2>
+            <div class="score-circle">
+                <span class="percent" id="finalScore">0%</span>
+                <span class="label">Total Score</span>
+            </div>
+            <p id="resultFeedback" style="font-weight: 500; font-size: 1.1rem; color: #475569;"></p>
+            <button class="restart-btn" onclick="location.reload()">
+                <i class="bi bi-arrow-clockwise"></i> Try Again
+            </button>
+        </div>
 
-                <div class="question">
-                    <p>2. Where is the correct place to insert a JavaScript file?</p>
-                    <div class="option">
-                        <input type="radio" name="q2" id="" value="A" checked>
-                        <label for="">Inside head section</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q2" id="" value="B">
-                        <label for="">At the end of body section</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q2" id="" value="C">
-                        <label for="">After body section</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q2" id="" value="D">
-                        <label for="">None</label>
-                    </div>
-                </div>
+        <!-- Quiz Form -->
+        <form id="quizForm" class="quiz-form">
+            <div id="questionsWrapper"></div>
 
-                <div class="question">
-                    <p>3. What is the correct syntax for referring to an external script called "index.js"?</p>
-                    <div class="option">
-                        <input type="radio" name="q3" id="" value="A" checked>
-                        <label for="">&#60;script name="index.js"&#62;</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q3" id="" value="B">
-                        <label for="">&#60;script href="index.js"&#62;</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q3" id="" value="C">
-                        <label for="">&#60;script src="index.js"&#62;</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q3" id="" value="D">
-                        <label for="">All</label>
-                    </div>
-                </div>
+            <div class="actions">
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    Submit Assessment <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </form>
+    </div>
 
-                <div class="question">
-                    <p>4. How do you write "Hello World" in an alert box?</p>
-                    <div class="option">
-                        <input type="radio" name="q4" id="" value="A" checked>
-                        <label for="">pop("Hello World");</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q4" id="" value="B">
-                        <label for="">alert("Hello World");</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q4" id="" value="C">
-                        <label for="">popUp("Hello World");</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q4" id="" value="D">
-                        <label for="">alertUp("Hello World");</label>
-                    </div>
-                </div>
 
-                <div class="question">
-                    <p>5. Which operator is used to assign a value to a variable?</p>
-                    <div class="option">
-                        <input type="radio" name="q5" id="" value="A" checked>
-                        <label for="">-</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q5" id="" value="B">
-                        <label for="">*</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q5" id="" value="C">
-                        <label for="">+</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" name="q5" id="" value="D">
-                        <label for="">=</label>
-                    </div>
-                </div>
-                <div class="submit">
-                    <input type="submit" value="Submit">
-                </div>
-            </form>
-        </section>
-    </main>
-
-    <script src="app.js"></script>
-    
+      <script src="../quiz-app/app.js"></script>
 </body>
 </html>
