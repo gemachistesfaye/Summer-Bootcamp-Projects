@@ -16,7 +16,7 @@ This repository contains a **collection of frontend projects** developed during 
 An interactive quiz application built to test user knowledge with instant feedback.
 
 - 📂 **Source Code:** [QuizApp Folder](./QuizApp)
-- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/QuizApp)
+- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects/QuizApp)
 
 **Technologies Used:**
 - HTML  
@@ -42,7 +42,7 @@ A frontend application that displays currency exchange rates with a clean and re
 A simple expense tracking application for managing and monitoring daily expenses.
 
 - 📂 **Source Code:** [Expense Tracker Folder](./expense-tracker)
-- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/Project%20Assignement/expense-tracker)
+- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/expense-tracker)
 
 **Technologies Used:**
 - HTML  
