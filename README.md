@@ -1,79 +1,103 @@
-
-# Summer Bootcamp 🎓 – Frontend Projects 💻
+# 🎓 Summer Bootcamp – Frontend Projects 💻
 
 This repository contains a **collection of frontend projects** developed during the  
-**ISHUB AAU Summer Bootcamp 2025**, Frontend Development track.
+**ISHUB AAU Summer Bootcamp 2025 – Frontend Development Track**.
 
 📍 **Institution:** Addis Ababa University (AAU) – ISHUB  
-📅 **Duration:** July 8, 2025 – September 7, 2025 (2 Months)  
+📅 **Duration:** July 8, 2025 – September 7, 2025  
 🎯 **Track:** Frontend Development  
 
 ---
 
 ## 📁 Project Collection
 
-### 1️⃣ QuizApp
-An interactive quiz application built to test user knowledge with instant feedback.
+### 1️⃣ Task Hub – Personal Task Manager
+A modern productivity workspace with task management, deep work timer and profile customization.
 
-- 📂 **Source Code:** [QuizApp Folder](./QuizApp)
+- 📂 **Source Code:** [personal-task-manager](./personal-task-manager)
+- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects/personal-task-manager)
+
+**Technologies Used:**  
+HTML • TailwindCSS • JavaScript • LocalStorage
+
+---
+
+### 2️⃣ Memory Cards Pro
+An interactive flashcard app with deck management, search, shuffle and dark mode.
+
+- 📂 **Source Code:** [memory-cards](./memory-cards)
+- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects/memory-cards)
+
+**Technologies Used:**  
+HTML • CSS • JavaScript
+
+---
+
+### 3️⃣ Quiz App
+Interactive multiple-choice quiz with instant results and answer highlighting.
+
+- 📂 **Source Code:** [quiz-app](./quiz-app)
 - 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects/QuizApp)
 
-**Technologies Used:**
-- HTML  
-- CSS  
-- JavaScript  
+**Technologies Used:**  
+HTML • CSS • JavaScript
 
 ---
 
-### 2️⃣ Exchange Rate App
-A frontend application that displays currency exchange rates with a clean and responsive UI.
+### 4️⃣ Expense Tracker
+A simple and responsive app for tracking daily income and expenses.
 
-- 📂 **Source Code:** [Exchange Rate Folder](./exchange-rate)
-- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/Project%20Assignement/exchange-rate)
-
-**Technologies Used:**
-- HTML  
-- CSS  
-- JavaScript  
-
----
-
-### 3️⃣ Expense Tracker
-A simple expense tracking application for managing and monitoring daily expenses.
-
-- 📂 **Source Code:** [Expense Tracker Folder](./expense-tracker)
+- 📂 **Source Code:** [expense-tracker](./expense-tracker)
 - 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/expense-tracker)
 
-**Technologies Used:**
-- HTML  
-- CSS  
-- JavaScript  
+**Technologies Used:**  
+HTML • CSS • JavaScript
+
+---
+
+### 5️⃣ Exchange Rate App
+Displays real-time currency exchange rates in a clean and responsive interface.
+
+- 📂 **Source Code:** [exchange-rate](./exchange-rate)
+- 🌐 **Live Demo:** [Click Here](https://gemachistesfaye.github.io/Frontend-Showcase/Project%20Assignement/exchange-rate)
+
+**Technologies Used:**  
+HTML • CSS • JavaScript • API Fetch
+
+---
+
+## 🧪 Practice & Learning Folders
+These folders contain exercises and experimental projects from the bootcamp:
+
+- 📂 `css-practice`
+- 📂 `css-practice2`
+- 📂 `JS-Practice`
+- 📂 `frontend-development2026`
 
 ---
 
 ## 🧠 Skills & Concepts Covered
-
-- Semantic HTML  
-- Modern CSS styling  
-- JavaScript DOM manipulation  
-- Event handling  
-- State management basics  
-- Responsive design  
+- Semantic HTML5  
+- Modern CSS (Flexbox, Grid, Responsive Design)  
+- TailwindCSS  
+- JavaScript (ES6+)  
+- DOM Manipulation & Event Handling  
+- Local Storage & State Management  
+- API Integration (Fetch)  
+- Responsive UI Design  
 
 ---
 
 ## 🎯 Purpose of This Repository
-
-- Document learning progress during the bootcamp  
+- Document learning progress  
 - Showcase frontend development skills  
-- Serve as a foundation for future others projects  
+- Build a strong GitHub portfolio  
 
 ---
 
 ## 👤 Author
-
 **Gemachis Tesfaye**  
-Information Science Student, Haramaya University  
+Information Science Student – Haramaya University  
 Frontend Development Trainee – ISHUB AAU Summer Bootcamp 2025  
 
 - GitHub: https://github.com/gemachistesfaye  
@@ -81,5 +105,4 @@ Frontend Development Trainee – ISHUB AAU Summer Bootcamp 2025
 ---
 
 ## 📜 License
-
-This project collection is intended for **educational and learning purposes**.
+This repository is intended for **educational and portfolio purposes**.
