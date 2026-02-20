@@ -18,7 +18,7 @@ Task Hub is designed to help users stay focused, organized and productive in a c
 
 | Dashboard | Deep Work Timer | Profile |
 |-----------|-----------------|----------|
-| ![Dashboard](./screenshots/dashboard.png) | ![Timer](./screenshots/settings.png) | ![Profile](./screenshots/profile.png) |
+| ![Dashboard](./screenshots/dashboard.png) | ![Timer](./screenshots/timer.png) | ![Profile](./screenshots/profile.png) |
 
 | Settings | Mobile View | Onboarding |
 |----------|--------------|-------------|
