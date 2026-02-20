@@ -3,7 +3,7 @@
 Task Hub is a modern, responsive productivity workspace built using **HTML, TailwindCSS and JavaScript**.  
 It simulates a lightweight personal operating system that helps users manage tasks, track focus sessions and personalize their workspace — all powered by local storage.
 
-> A frontend-focused project demonstrating UI design, state management, and responsive layout architecture.
+> A frontend-focused project demonstrating UI design, state management and responsive layout architecture.
 
 ---
 
