@@ -1,53 +1,57 @@
 # 📚 JavaScript Quiz App
 
-A simple and interactive **JavaScript Quiz Application** built using HTML, CSS and JavaScript.
-It displays multiple-choice questions, calculates the score and highlights correct/wrong answers.
+A simple and interactive **JavaScript Quiz Application** built using **HTML, CSS and JavaScript**.  
+It displays multiple-choice questions, calculates the score and highlights correct and wrong answers instantly.
 
 ---
 
 ## 🚀 Live Demo
 
-## [Click here to try the live quiz](https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/QuizApp)
+👉 **[Click here to try the live quiz](https://gemachistesfaye.github.io/Summer-Bootcamp-Projects/QuizApp)**
 
 ---
 
 ## 📸 Screenshots
 
-### Quiz Page
-![Quiz Screenshot](./screenshot/quiz.png)
-
-### Result Page
-![Result Screenshot](./screenshot/result.png)
+| Quiz Page | Result Page |
+|-----------|------------|
+| ![Quiz Screenshot](./screenshot/quiz.png) | ![Result Screenshot](./screenshot/result.png) |
 
 ---
 
 ## ✨ Features
-- 🖱 Multiple-choice questions
-- ✅ Instant result calculation
-- 🎯 Highlights correct and wrong answers
-- 🔄 Option to retake the quiz
-- 📱 Fully responsive design
-- ⬆️ **Smoothly scrolls to the top of the page for results**
+
+- 🖱 Multiple-choice questions  
+- ✅ Instant result calculation  
+- 🎯 Highlights correct and wrong answers  
+- 🔄 Option to retake the quiz  
+- 📱 Fully responsive design  
+- ⬆️ Smooth scroll to the top when showing results  
 
 ---
 
 ## 🛠 Tech Stack
-- **HTML5** – Structure
-- **CSS3** – Styling & Layout
-- **JavaScript (ES6)** – Functionality
+
+| Technology | Purpose |
+|------------|----------|
+| **HTML5** | Structure |
+| **CSS3** | Styling & Layout |
+| **JavaScript (ES6)** | Logic & Interactivity |
 
 ---
 
 ## 📂 Project Structure
+
 ```
-📦 quiz-app
-┣ 📂 screenshot
-┃ ┣ 📜 quiz.png
-┃ ┗ 📜 result.png
-┣ 📜 index.html
-┣ 📜 style.css
-┣ 📜 app.js
-┗ 📜 README.md
+quiz-app/
+│
+├── screenshot/
+│   ├── quiz.png
+│   └── result.png
+├── index.html
+├── style.css
+├── app.js
+└── README.md
 ```
 
 ---
@@ -56,42 +60,45 @@ It displays multiple-choice questions, calculates the score and highlights corre
 
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/](https://github.com/)[urjiiko1]/quiz-app.git
+   git clone https://github.com/gemachistesfaye/Summer-Bootcamp-Projects.git
+   ```
 
- 
+2. **Navigate to the project folder**
+   ```bash
+   cd quiz-app
+   ```
 
-2.  **Navigate to the project folder**
-    ```bash
-    cd quiz-app
-    ```
-3.  **Open `index.html` in your browser**
-    Or use Live Server in VS Code for a hot reload.
+3. **Open `index.html` in your browser**  
+   Or use **Live Server** in VS Code for automatic reload.
 
 ---
 
 ## 📋 How It Works
 
-The user selects answers to multiple-choice questions. When submitted, the app:
-
-* Compares each selected answer with the correct one.
-* Calculates the total score.
-* Highlights correct answers in green and wrong answers in red.
-* Displays the score and provides a "Try Again" option.
+1. The user selects answers to multiple-choice questions.
+2. When submitted, the app:
+   - Compares selected answers with the correct ones.
+   - Calculates the total score.
+   - Highlights correct answers in 🟢 green.
+   - Highlights wrong answers in 🔴 red.
+   - Displays the final score.
+3. The user can click **"Try Again"** to restart the quiz.
 
 ---
 
 ## 🖌 Customization
 
-* Add or change questions in `index.html` under the `.question` blocks.
-* Update the correct answers array in `app.js`:
-    ```javascript
-    const correctAnswers = ['D', 'B', 'C', 'B', 'D'];
-    ```
-* Modify colors or styles in `style.css`.
+- ✏️ Add or edit questions inside `index.html`.
+- 🧠 Update the correct answers array in `app.js`:
+   ```javascript
+   const correctAnswers = ['D', 'B', 'C', 'B', 'D'];
+   ```
+- 🎨 Modify styles and colors inside `style.css`.
 
 ---
 
 ## 💡 Author
 
-Created with ❤️  **[Gemachis]**
-[GitHub Profile](https://github.com/urjiiko1)
+Created with ❤️ by **Gemachis**  
+
+🔗 **GitHub:** https://github.com/gemachistesfaye
